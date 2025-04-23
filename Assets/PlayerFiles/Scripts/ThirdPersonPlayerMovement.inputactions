@@ -1,0 +1,174 @@
+{
+    "name": "ThirdPersonPlayerMovement",
+    "maps": [
+        {
+            "name": "PlayerMovement",
+            "id": "43946909-35c7-4b4a-988d-b23c5389c577",
+            "actions": [
+                {
+                    "name": "Movement",
+                    "type": "Value",
+                    "id": "4e7c200c-083a-4c16-ab03-75c3767f72b2",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Dashing",
+                    "type": "Button",
+                    "id": "a4af0452-1470-4db1-8ba2-9ed37427a219",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "Move With WASD",
+                    "id": "a040a722-db0d-4ad2-b69f-60cdb99f7ab8",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "NormalizeVector2",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "e8d80cdc-6162-4327-85ee-55fb1610a3be",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keybord&Mouse Input",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "92464d9e-4aad-4d15-821c-99151324eea2",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keybord&Mouse Input",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "005caa07-a72e-4766-b9c5-0a3b7ec51386",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keybord&Mouse Input",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "85f27964-b66e-45e9-88a9-9fd38547d87e",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keybord&Mouse Input",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "f46b795f-6805-4496-b102-d2fc17594099",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": ";Keybord&Mouse Input",
+                    "action": "Dashing",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Combat",
+            "id": "cdf12752-f131-4c19-871d-713a3ff3869a",
+            "actions": [
+                {
+                    "name": "SwordAttack",
+                    "type": "Button",
+                    "id": "407a3f78-c87a-4164-ad73-708e4ab67016",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BowAttack",
+                    "type": "Button",
+                    "id": "7d420f56-6d19-40ac-a115-f43029805503",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "07a2bc38-883b-4b85-a7b3-1787fa9d0d2c",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keybord&Mouse Input",
+                    "action": "SwordAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "16caad87-f31f-4e66-a978-e7dc7028aa3e",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keybord&Mouse Input",
+                    "action": "BowAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Keybord&Mouse Input",
+            "bindingGroup": "Keybord&Mouse Input",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "TouchScreen",
+            "bindingGroup": "TouchScreen",
+            "devices": [
+                {
+                    "devicePath": "<Touchscreen>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

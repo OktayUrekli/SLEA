@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 996eff9a59cc277418ae29047ece6078
+timeCreated: 1520993967
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 115521
+  packageName: BOSS Class - Bull
+  packageVersion: 1.0
+  assetPath: Assets/TAZO_3D_C/BOSS/Bull/Shader/Cartoon.shader
+  uploadId: 278866
