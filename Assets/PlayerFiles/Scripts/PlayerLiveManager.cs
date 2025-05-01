@@ -2,12 +2,17 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerLiveManager : MonoBehaviour
+
+public interface IDamageable
+{
+    void TakeDamage(float damage);
+}
+public class PlayerLiveManager : MonoBehaviour, IDamageable
 {
     Animator playerAnimator;
 
-    [SerializeField] int maxLive = 200;
-    [SerializeField] int currentLive;
+    [SerializeField] float maxLive = 200;
+    [SerializeField] float currentLive;
 
     [SerializeField] TextMeshProUGUI remaingLiveText;
     [SerializeField] Image remaingLiveImg;
@@ -29,10 +34,8 @@ public class PlayerLiveManager : MonoBehaviour
         remaingLiveImg.fillAmount = currentLive/maxLive;
     }
 
-    
-    
-
-    public void TakeDamage(int damage)
+ 
+    public void TakeDamage(float damage)
     {
         currentLive -= damage;
 
@@ -75,6 +78,7 @@ public class PlayerLiveManager : MonoBehaviour
     void LiveStatus()
     {
         remaingLiveText.text = currentLive.ToString();
-        remaingLiveImg.fillAmount = (float)currentLive / maxLive;
+        remaingLiveImg.fillAmount = currentLive / maxLive;
     }
+
 }

@@ -13,25 +13,9 @@ public class EnemyCylinderLiveManager : MonoBehaviour
     void Start()
     {
         currentLive = maxCylinderLive;
-        currentLiveImg.fillAmount = currentLive / maxCylinderLive;
+        EnemyLiveStatus();
     }
 
-    /*
-    private void OnCollisionEnter(Collision collision)
-    {
-
-        if (collision.gameObject.CompareTag("Sword"))
-        {
-            EnemyTakeDamage(50);
-
-        }
-        if (collision.gameObject.CompareTag("Arrow"))
-        {
-            EnemyTakeDamage(30);
-            Destroy(collision.gameObject);
-        }
-    }
-    */
     private void OnTriggerEnter(Collider other)
     {
 
@@ -58,12 +42,17 @@ public class EnemyCylinderLiveManager : MonoBehaviour
         if (currentLive <= 0)
         {
             currentLive = 0;
-            currentLiveImg.fillAmount = currentLive / maxCylinderLive;
+            EnemyLiveStatus();
             gameObject.SetActive(false);
         }
         else
         {
-            currentLiveImg.fillAmount = currentLive / maxCylinderLive;
+            EnemyLiveStatus();
         }
+    }
+
+    void EnemyLiveStatus()
+    {
+        currentLiveImg.fillAmount = currentLive / maxCylinderLive;
     }
 }

@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 3353e4f866c39d043a315b41717c9bb7
-AssetOrigin:
-  serializedVersion: 1
-  productId: 134212
-  packageName: Free Mummy Monster
-  packageVersion: 1.0
-  assetPath: Assets/amusedART/Mummy_Mon/Mummy_Mon.FBX
-  uploadId: 280955
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable:
@@ -294,6 +287,8 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 

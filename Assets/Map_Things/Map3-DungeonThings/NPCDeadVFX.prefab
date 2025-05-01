@@ -9784,7 +9784,7 @@ GameObject:
   - component: {fileID: 4397334591890123668}
   - component: {fileID: 4397334591890123669}
   m_Layer: 0
-  m_Name: Death
+  m_Name: NPCDeadVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
