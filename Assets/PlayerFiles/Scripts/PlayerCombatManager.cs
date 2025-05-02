@@ -57,13 +57,8 @@ public class PlayerCombatManager : MonoBehaviour
         {
             LookToMouseDirection();
         }
+ 
 
-        /*
-        if ((Input.GetMouseButton(1)) && canAttackWithBow )
-        {
-            LookToMouseDirection();
-        }*/
-        
         if (swordAttackAction.IsPressed() && canAttackWithSword) // eğer mouse sol tuşa basıldıysa ve player sword attack yapabilecek durumdaysa çalışır
         {
             UseSword();

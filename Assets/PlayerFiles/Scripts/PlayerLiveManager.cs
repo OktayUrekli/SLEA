@@ -45,12 +45,7 @@ public class PlayerLiveManager : MonoBehaviour, IDamageable
 
         if (currentLive <=0)
         {
-            currentLive = 0;
-            LiveStatus();
-            playerAnimator.SetTrigger("Died");
-            deathVfx.Play();
-            gameObject.GetComponent<PlayerMovementManager>().enabled = false;
-            gameObject.GetComponent<PlayerCombatManager>().enabled = false;
+            PlayerDead();
         }
         else
         {
@@ -73,6 +68,17 @@ public class PlayerLiveManager : MonoBehaviour, IDamageable
             LiveStatus();
         }
 
+    }
+
+    void PlayerDead()
+    {
+        currentLive = 0;
+        LiveStatus();
+        playerAnimator.SetTrigger("Died");
+        deathVfx.Play();
+        gameObject.GetComponent<PlayerMovementManager>().enabled = false;
+        gameObject.GetComponent<PlayerCombatManager>().enabled = false;
+        gameObject.GetComponent<PlayerLiveManager>().enabled = false;
     }
 
     void LiveStatus()
