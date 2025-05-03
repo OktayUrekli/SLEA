@@ -2,15 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBallController : MonoBehaviour
+public class EnemyNpcProjectile : MonoBehaviour
 {
     [SerializeField] float damagePoint; // saldýrý ile verilecek hasr miktarý
     [SerializeField] float firePower;
+
+    [SerializeField] float destroyItselfTime;
+    float elapsedTime=0;
 
     // Start is called before the first frame update
     void Start()
     {
         gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * firePower * Time.deltaTime, ForceMode.Impulse);
+    }
+
+    private void Update()
+    {
+        elapsedTime += Time.deltaTime;
+        if (elapsedTime>=destroyItselfTime)
+        {
+            Destroy(gameObject); // zamaný dolarsa kendini yok eder
+        } 
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,7 +36,7 @@ public class FireBallController : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        else
+        else // herhangi bir yere çarparsa yok olur
         {
             Destroy(gameObject);
         }

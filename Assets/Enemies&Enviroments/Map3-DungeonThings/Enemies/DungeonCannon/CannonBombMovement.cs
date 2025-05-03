@@ -8,8 +8,8 @@ public class CannonBombMovement : MonoBehaviour
 
     [SerializeField] ParticleSystem explodeVFX;
 
-    [SerializeField] float explosionRadius = 5f;
-    [SerializeField] int explosionDamage = 10;
+    [SerializeField] float explosionRadius ;
+    [SerializeField] int explosionDamage ;
     [SerializeField] LayerMask damageableLayers; // Hangi layer'dakilere hasar verecek
 
     private bool exploded = false;
