@@ -22,9 +22,12 @@ public class PlayerLiveManager : MonoBehaviour, IDamageable
 
     [SerializeField] GameObject floatingText;
 
+    public bool isDead;
+
     private void Awake()
     {
         playerAnimator = GetComponent<Animator>();
+        isDead = false;
     }
 
     void Start()
@@ -72,6 +75,7 @@ public class PlayerLiveManager : MonoBehaviour, IDamageable
 
     void PlayerDead()
     {
+        isDead = true;
         currentLive = 0;
         LiveStatus();
         playerAnimator.SetTrigger("Died");

@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 914bde72609b46940b7cf294190c4fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnSpeed: 150
+  turnSpeed: 250
   viewRangeRadius: 10
   targetMask:
     serializedVersion: 2

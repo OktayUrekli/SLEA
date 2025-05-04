@@ -398,7 +398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewRangeRadius: 10
-  attackRangeRadius: 2
+  attackRangeRadius: 1.5
 --- !u!114 &8744040679842522265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,7 +434,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   damagePoint: 15
-  attackRangeRadius: 2
+  attackRangeRadius: 1.5
   attackDuration: 2
   looksDirectToThePlayer: 0
   randPointRange: 10

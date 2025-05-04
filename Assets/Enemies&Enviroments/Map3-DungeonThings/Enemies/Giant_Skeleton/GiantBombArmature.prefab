@@ -29163,7 +29163,7 @@ GameObject:
   - component: {fileID: 156424529694298554}
   - component: {fileID: 3926120513527921047}
   m_Layer: 0
-  m_Name: GiantBomb-GiantSkeleton
+  m_Name: GiantBombArmature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

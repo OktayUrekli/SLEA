@@ -1862,6 +1862,7 @@ MonoBehaviour:
   takeDamageBloodVfx: {fileID: 7439108408977750013}
   deathVfx: {fileID: 3630669811989996107}
   floatingText: {fileID: 4547475983935278989, guid: 5ac135ead8144aa42ae2c64d66b4a301, type: 3}
+  isDead: 0
 --- !u!114 &249568993590569158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3135,7 +3136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2886273363105558070, guid: f7ee3f86c925f1c40bae112b31483bc9, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2886273363105558070, guid: f7ee3f86c925f1c40bae112b31483bc9, type: 3}
       propertyPath: m_IsActive

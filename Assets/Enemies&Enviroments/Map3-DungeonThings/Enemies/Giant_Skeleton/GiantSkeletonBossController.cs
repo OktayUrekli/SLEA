@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,7 +15,7 @@ public class GiantSkeletonBossController : MonoBehaviour,INPCController
     [Header("GEneral Attack Variables")]
     bool canAttack;
     [SerializeField] float attackDuration;
-    public int attackIndex;
+    [SerializeField] int attackIndex;
 
     [Header("Close Attack Variables")]
     [SerializeField] float punchDamagePoint; // punch saldýrý ile verilecek hasar miktarý
@@ -59,59 +57,64 @@ public class GiantSkeletonBossController : MonoBehaviour,INPCController
 
         foreach (Collider target in targetsInViewRadius) // eðer player bulunduysa bu bloðun içine girer
         {
-            Vector3 direction = (target.transform.position - transform.position);
-            direction.y = 0f;
+            PlayerLiveManager liveManager = target.GetComponent<PlayerLiveManager>();
 
-            if (direction.sqrMagnitude > 0.001f) // player a doðru dönüþ yapýlýyor
+            if (!liveManager.isDead) // eðer player ölü deðilse bu iþlemler gerçekleþtirilmeli
             {
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
-                looksDirectToThePlayer = true;
-            }
-            else //npc playera direkt olarak bakmýyorsa attack ve approach yapýlamaz
-            {
-                looksDirectToThePlayer = false;
-            }
+                Vector3 direction = (target.transform.position - transform.position);
+                direction.y = 0f;
 
-            float distance = direction.magnitude; // npc ile player arasýndaki mesafenin boyutu (xz düzlemindeki mesafe)
+                if (direction.sqrMagnitude > 0.001f) // player a doðru dönüþ yapýlýyor
+                {
+                    Quaternion targetRotation = Quaternion.LookRotation(direction);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+                    looksDirectToThePlayer = true;
+                }
+                else //npc playera direkt olarak bakmýyorsa attack ve approach yapýlamaz
+                {
+                    looksDirectToThePlayer = false;
+                }
+
+                float distance = direction.magnitude; // npc ile player arasýndaki mesafenin boyutu (xz düzlemindeki mesafe)
 
             
-            if (looksDirectToThePlayer && distance <= closeAttackRangeRadius && canAttack) // eðer yakýn saldýrý alanýna girildiyse
-            {
-                Debug.Log("yakýn saldýrý alanýna girildi");
-                // kick ile tekme mi atacak yoksa punch ile yumruk mu atacak tercih yapýlacak
-                attackIndex = Random.Range(2, 3); // 1 dahil 3 deðil yani ya 1 ya da 2 -- 1 punch -- 2 kick
-                StartCoroutine(CloseAttackToPlayer(target.gameObject, attackIndex));
-            }
-            else if (looksDirectToThePlayer && (distance > closeAttackRangeRadius && distance <= rangeAttackRangeRadius) && canAttack) 
-            {
-                Debug.Log("uzak saldýrý alanýna girildi");
+                if (looksDirectToThePlayer && distance <= closeAttackRangeRadius && canAttack) // eðer yakýn saldýrý alanýna girildiyse
+                {
+                    Debug.Log("yakýn saldýrý alanýna girildi");
+                    attackIndex = Random.Range(1, 3); // 1 dahil 3 deðil yani ya 1 ya da 2 -- 1 punch -- 2 kick
+                    StartCoroutine(CloseAttackToPlayer(target.gameObject, attackIndex));
+                }
+                else if (looksDirectToThePlayer && (distance > closeAttackRangeRadius && distance <= rangeAttackRangeRadius) && canAttack) 
+                {
+                    Debug.Log("uzak saldýrý alanýna girildi");
 
-                // eðer uzak saldýrý alanýna girildiyse yakýn saldýrý mý yoksa uzak saldýr mý yapýlacak karakr verecek
-                int attackType = Random.Range(1, 2); // 1-yakýn  2- uzak 
-                if (attackType==1 && rangedAttackFinished ) // yakýn saldýrý
-                {
-                    Debug.Log("yakýn saldýrý tercih edildi");
-                    closeAttackFinished = false;
-                    npcAnimator.SetFloat("Speed", 5); // walk anim çalýþmasý için gerekli
-                    npcNavAgent.SetDestination(target.transform.position); // yakýn saldýrý yapmak için uzak olduðundan dolayý player a yaklaþýyor
+                    // eðer uzak saldýrý alanýna girildiyse yakýn saldýrý mý yoksa uzak saldýr mý yapýlacak karakr verecek
+                    int attackType = Random.Range(1, 3); // 1-yakýn  2- uzak 
+                    if (attackType==1 && rangedAttackFinished ) // yakýn saldýrý
+                    {
+                        Debug.Log("yakýn saldýrý tercih edildi");
+                        closeAttackFinished = false;
+                        npcAnimator.SetFloat("Speed", 5); // walk anim çalýþmasý için gerekli
+                        npcNavAgent.SetDestination(target.transform.position); // yakýn saldýrý yapmak için uzak olduðundan dolayý player a yaklaþýyor
+                    }
+                    else if(attackType==2 && closeAttackFinished )//&& transform.position==targetPos) // uzak saldýrý
+                    {
+                        Debug.Log("uzak saldýrý tercih edildi");
+                        rangedAttackFinished = false;
+                        attackIndex = Random.Range(3, 5); // 3-throw  4-spin
+                        StartCoroutine(RangedAttackToPlayer(target.gameObject, attackIndex));
+                    }
                 }
-                else if(attackType==2 && closeAttackFinished )//&& transform.position==targetPos) // uzak saldýrý
+                else // player sadece görüþ alaný içindeyse
                 {
-                    Debug.Log("uzak saldýrý tercih edildi");
-                    rangedAttackFinished = false;
-                    attackIndex = Random.Range(3, 5); // 3-throw  4-spin
-                    StartCoroutine(RangedAttackToPlayer(target.gameObject, attackIndex));
+                    Debug.Log("görüþ alanýna girildi");
+                    if (closeAttackFinished && rangedAttackFinished && canAttack)
+                    {
+                        ApproachThePlayer(target.transform);
+                    }
                 }
             }
-            else // player sadece görüþ alaný içindeyse
-            {
-                Debug.Log("görüþ alanýna girildi");
-                if (closeAttackFinished && rangedAttackFinished)
-                {
-                    ApproachThePlayer(target.transform);
-                }
-            }
+
         }
 
         if (targetsInViewRadius.Length == 0) // eðer görüþ alaný içinde player yoksa npc rasgele dolanacak-patrolling
@@ -178,14 +181,14 @@ public class GiantSkeletonBossController : MonoBehaviour,INPCController
         if (attackType == 1) // punch
         {
             Debug.Log("punch saldýrý tercih edildi");
-            
+            npcAnimator.SetTrigger("Punch");
+
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, closeAttackRangeRadius, targetMask);
             foreach (Collider hit in hitColliders)
             {
                 var damageable = hit.GetComponent<IDamageable>();
                 if (damageable != null)
                 {
-                    npcAnimator.SetTrigger("Punch");
                     yield return new WaitForSeconds(0.4f); // ilk hasar ile animasyon denk gelmesi için bir delay
                     damageable.TakeDamage(punchDamagePoint);
                 }
@@ -194,14 +197,14 @@ public class GiantSkeletonBossController : MonoBehaviour,INPCController
         else if (attackType == 2) // kick
         {
             Debug.Log("kick saldýrý tercih edildi");
-            
+            npcAnimator.SetTrigger("Kick");
+
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, closeAttackRangeRadius, targetMask);
             foreach (Collider hit in hitColliders)
             {
                 var damageable = hit.GetComponent<IDamageable>();
                 if (damageable != null)
                 {
-                    npcAnimator.SetTrigger("Kick");
                     yield return new WaitForSeconds(0.4f); // ilk hasar ile animasyon denk gelmesi için bir delay
                     damageable.TakeDamage(kickDamagePoint);
                 }

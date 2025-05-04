@@ -1271,9 +1271,9 @@ MonoBehaviour:
   punchDamagePoint: 20
   kickDamagePoint: 25
   closeAttackRangeRadius: 2
-  rangeAttackRangeRadius: 10
+  rangeAttackRangeRadius: 7
   spinAttackVfx: {fileID: 5204520197429418879}
-  giantBombPrefab: {fileID: 6537786019219646035, guid: dba4a4cb6d8ea1d499cb6c610e3ffdb9, type: 3}
+  giantBombPrefab: {fileID: 3689574028690036369, guid: de08db97724ee664b94d65dc316df92f, type: 3}
   giantBombThrowPoint: {fileID: 3297273836415116851}
   bombTravelTime: 0.5
   looksDirectToThePlayer: 0

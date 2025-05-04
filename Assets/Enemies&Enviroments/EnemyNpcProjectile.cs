@@ -7,7 +7,7 @@ public class EnemyNpcProjectile : MonoBehaviour
     [SerializeField] float damagePoint; // saldýrý ile verilecek hasr miktarý
     [SerializeField] float firePower;
 
-    [SerializeField] float destroyItselfTime;
+    float destroyItselfTime=1f;
     float elapsedTime=0;
 
     // Start is called before the first frame update

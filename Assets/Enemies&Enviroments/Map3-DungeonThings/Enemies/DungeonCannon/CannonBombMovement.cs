@@ -7,7 +7,7 @@ public class CannonBombMovement : MonoBehaviour
     private float elapsedTime = 0f;
 
     [SerializeField] ParticleSystem explodeVFX;
-
+    [SerializeField] GameObject bombArmature;
     [SerializeField] float explosionRadius ;
     [SerializeField] int explosionDamage ;
     [SerializeField] LayerMask damageableLayers; // Hangi layer'dakilere hasar verecek
@@ -20,6 +20,7 @@ public class CannonBombMovement : MonoBehaviour
         controlPoint = control;
         endPoint = end;
         duration = time;
+        bombArmature.SetActive(true);
     }
 
     void Update()
@@ -42,7 +43,7 @@ public class CannonBombMovement : MonoBehaviour
     void Explode()
     {
         exploded = true;
-
+        bombArmature.SetActive(false);
         PlayVFX(explodeVFX);
 
         // Patlama alanýnda kimler var bulalým

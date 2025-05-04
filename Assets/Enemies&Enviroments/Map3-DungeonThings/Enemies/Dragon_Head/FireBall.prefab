@@ -148,3 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damagePoint: 15
   firePower: 500
+  destroyItselfTime: 1

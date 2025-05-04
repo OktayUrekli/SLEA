@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class DungeonCannonController : MonoBehaviour,INPCController
@@ -8,14 +6,14 @@ public class DungeonCannonController : MonoBehaviour,INPCController
     [Header("Bomb Variables")]
     [SerializeField] GameObject bombPrefab;
     [SerializeField] Transform firePoint; // Cannon ucundaki nokta
-    [SerializeField] float bombTravelTime = 2f; // Bombanýn hedefe ulaþma süresi
-    [SerializeField] float fireDuration = 3f;
+    [SerializeField] float bombTravelTime; // Bombanýn hedefe ulaþma süresi
+    [SerializeField] float fireDuration;
     bool canFire;
 
     [Header("View&Attack Variables")]
-    [SerializeField] float turnSpeed = 150f; // npc nin playe a doðru dönüþ hýzý
-    [SerializeField] float viewRangeRadius = 15f; // görüþ alaný yarýçapý
-    [SerializeField] float attackRangeRadius = 15f; // atak alaný yarýçapý
+    [SerializeField] float turnSpeed; // npc nin playe a doðru dönüþ hýzý
+    [SerializeField] float viewRangeRadius; // görüþ alaný yarýçapý
+    [SerializeField] float attackRangeRadius; // atak alaný yarýçapý
     [SerializeField] LayerMask targetMask;
 
     private void Start()
@@ -34,26 +32,32 @@ public class DungeonCannonController : MonoBehaviour,INPCController
 
         foreach (Collider target in targetsInViewRadius) // eðer player bulunduysa bu bloðun içine girer
         {
-            Vector3 direction = (target.transform.position - transform.position);
-            direction.y = 0f;
+            PlayerLiveManager liveManager = target.GetComponent<PlayerLiveManager>();
 
-            if (direction.sqrMagnitude > 0.001f)
+            if (!liveManager.isDead)
             {
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+                Vector3 direction = (target.transform.position - transform.position);
+                direction.y = 0f;
+
+                if (direction.sqrMagnitude > 0.001f)
+                {
+                    Quaternion targetRotation = Quaternion.LookRotation(direction);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+                }
+
+                float distance = direction.magnitude;
+
+                if (attackRangeRadius>=distance && canFire) // player atak alaný içerisine girerse npc saldýracak
+                {
+                    StartCoroutine(ShootAtTarget(target.transform.position));
+                }
+                else // eðer player sadece görüþ alaný içindeyse npc player a doðru hareket edecek
+                {
+                   // Debug.Log("görüþ alaný alaný içinde");
+                   // cannon hareket etmeyecek
+                }
             }
 
-            float distance = direction.magnitude;
-
-            if (attackRangeRadius>=distance && canFire) // player atak alaný içerisine girerse npc saldýracak
-            {
-                StartCoroutine(ShootAtTarget(target.transform.position));
-            }
-            else // eðer player sadece görüþ alaný içindeyse npc player a doðru hareket edecek
-            {
-               // Debug.Log("görüþ alaný alaný içinde");
-               // cannon hareket etmeyecek
-            }
         }
 
         if (targetsInViewRadius==null) // eðer görüþ alaný içinde player yoksa npc rasgele dolanacak-patrolling

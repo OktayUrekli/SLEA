@@ -9,14 +9,14 @@ public class SkullMaskedOrcController : MonoBehaviour, INPCController
     NavMeshAgent npcNavAgent;
 
     [Header("View Range Variables")]
-    [SerializeField] float turnSpeed = 125; // npc nin playe a doðru dönüþ hýzý
-    [SerializeField] float viewRangeRadius = 10; // görüþ alaný yarýçapý
+    [SerializeField] float turnSpeed; // npc nin playe a doðru dönüþ hýzý
+    [SerializeField] float viewRangeRadius ; // görüþ alaný yarýçapý
     [SerializeField] LayerMask targetMask;
 
     [Header("Attack Variables")]
     bool canAttack;
     [SerializeField] float damagePoint; // saldýrý ile verilecek hasr miktarý
-    [SerializeField] float attackRangeRadius = 2; // atak alaný yarýçapý
+    [SerializeField] float attackRangeRadius; // atak alaný yarýçapý
     [SerializeField] float attackDuration; // saldýrma sýklýðý
 
     [Header("Patroll&Aproach Variables")]
@@ -45,38 +45,44 @@ public class SkullMaskedOrcController : MonoBehaviour, INPCController
 
         foreach (Collider target in targetsInViewRadius) // eðer player bulunduysa bu bloðun içine girer
         {
-            Vector3 direction = (target.transform.position - transform.position);
-            direction.y = 0f;
+            PlayerLiveManager liveManager = target.GetComponent<PlayerLiveManager>();
 
-            if (direction.sqrMagnitude > 0.001f) // player a doðru dönüþ yapýlýyor
+            if (!liveManager.isDead)
             {
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
-                looksDirectToThePlayer = true;
-            }
-            else //npc playera direkt olarak bakmýyorsa attack ve approach yapýlamaz
-            {
-                looksDirectToThePlayer = false;
-            }
 
-            float distance = direction.magnitude; // npc ile player arasýndaki mesafenin skaler büyüklüðü (xz düzlemindeki mesafe)
+                Vector3 direction = (target.transform.position - transform.position);
+                direction.y = 0f;
 
-            if (attackRangeRadius >= distance && canAttack) // player atak alaný içerisine girerse npc saldýracak
-            {
-                StartCoroutine(AttackToPlayer(target.gameObject));
-            }
-            else // eðer player sadece görüþ alaný içindeyse npc player a doðru hareket edecek
-            {
-                if (looksDirectToThePlayer && distance > attackRangeRadius  && canAttack)
+                if (direction.sqrMagnitude > 0.001f) // player a doðru dönüþ yapýlýyor
                 {
-                    ApproachThePlayer(target.transform);
+                    Quaternion targetRotation = Quaternion.LookRotation(direction);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+                    looksDirectToThePlayer = true;
+                }
+                else //npc playera direkt olarak bakmýyorsa attack ve approach yapýlamaz
+                {
+                    looksDirectToThePlayer = false;
+                }
+
+                float distance = direction.magnitude; // npc ile player arasýndaki mesafenin skaler büyüklüðü (xz düzlemindeki mesafe)
+
+                if (attackRangeRadius >= distance && canAttack) // player atak alaný içerisine girerse npc saldýracak
+                {
+                    StartCoroutine(AttackToPlayer(target.gameObject));
+                }
+                else // eðer player sadece görüþ alaný içindeyse npc player a doðru hareket edecek
+                {
+                    if (looksDirectToThePlayer && distance > attackRangeRadius  && canAttack)
+                    {
+                        ApproachThePlayer(target.transform);
+                    }
                 }
             }
+
         }
 
-        if (targetsInViewRadius.Length == 0 && canAttack ) // eðer görüþ alaný içinde player yoksa npc rasgele dolanacak-patrolling
-        {
-            
+        if (targetsInViewRadius.Length == 0) // eðer görüþ alaný içinde player yoksa npc rasgele dolanacak-patrolling
+        {            
             looksDirectToThePlayer = false; // görüþ alaný içinde player olmayýnca ona doðru bakamaz
             Patroll();
         }

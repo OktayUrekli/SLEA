@@ -46,33 +46,39 @@ public class DragonHeadController : MonoBehaviour, INPCController
 
         foreach (Collider target in targetsInViewRadius) // eðer player bulunduysa bu bloðun içine girer
         {
-            Vector3 direction = (target.transform.position - transform.position);
-            direction.y = 0f;
+            PlayerLiveManager liveManager = target.GetComponent<PlayerLiveManager>();
 
-            if (direction.sqrMagnitude > 0.001f) // player a doðru dönüþ yapýlýyor
+            if (!liveManager.isDead)
             {
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
-                looksDirectToThePlayer = true;
-            }
-            else //npc playera direkt olarak bakmýyorsa attack ve approach yapýlamaz
-            {
-                looksDirectToThePlayer = false;
-            }
+                Vector3 direction = (target.transform.position - transform.position);
+                direction.y = 0f;
 
-            float distance = direction.magnitude; // npc ile player arasýndaki mesafenin skaler büyüklüðü (xz düzlemindeki mesafe)
-
-            if (attackRangeRadius >= distance && canAttack ) // player atak alaný içerisine girerse ve npc hala canlý ise npc saldýracak
-            {
-                StartCoroutine(AttackToPlayer(target.gameObject));
-            }
-            else // eðer player sadece görüþ alaný içindeyse ve npc hala canlý ise npc player a doðru hareket edecek
-            {
-                if (looksDirectToThePlayer && distance > attackRangeRadius && canAttack )
+                if (direction.sqrMagnitude > 0.001f) // player a doðru dönüþ yapýlýyor
                 {
-                    ApproachThePlayer(target.transform);
+                    Quaternion targetRotation = Quaternion.LookRotation(direction);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+                    looksDirectToThePlayer = true;
+                }
+                else //npc playera direkt olarak bakmýyorsa attack ve approach yapýlamaz
+                {
+                    looksDirectToThePlayer = false;
+                }
+
+                float distance = direction.magnitude; // npc ile player arasýndaki mesafenin skaler büyüklüðü (xz düzlemindeki mesafe)
+
+                if (attackRangeRadius >= distance && canAttack ) // player atak alaný içerisine girerse ve npc hala canlý ise npc saldýracak
+                {
+                    StartCoroutine(AttackToPlayer(target.gameObject));
+                }
+                else // eðer player sadece görüþ alaný içindeyse ve npc hala canlý ise npc player a doðru hareket edecek
+                {
+                    if (looksDirectToThePlayer && distance > attackRangeRadius && canAttack )
+                    {
+                        ApproachThePlayer(target.transform);
+                    }
                 }
             }
+
         }
 
         if (targetsInViewRadius.Length == 0 && canAttack) // eðer görüþ alaný içinde player yoksa ve npc hala canlý ise npc rasgele dolanacak-patrolling
