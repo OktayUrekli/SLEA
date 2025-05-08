@@ -1273,7 +1273,7 @@ MonoBehaviour:
   closeAttackRangeRadius: 2
   rangeAttackRangeRadius: 7
   spinAttackVfx: {fileID: 5204520197429418879}
-  giantBombPrefab: {fileID: 3689574028690036369, guid: de08db97724ee664b94d65dc316df92f, type: 3}
+  giantBombPrefab: {fileID: 6143754727343870327, guid: c9232696c42bbe4469795599fd128c86, type: 3}
   giantBombThrowPoint: {fileID: 3297273836415116851}
   bombTravelTime: 0.5
   looksDirectToThePlayer: 0

@@ -14581,7 +14581,6 @@ GameObject:
   - component: {fileID: 9018518568497225159}
   - component: {fileID: 4059496709802849757}
   - component: {fileID: 7017825903350503352}
-  - component: {fileID: 6846157364107758613}
   m_Layer: 0
   m_Name: skullBombArmature
   m_TagString: Untagged
@@ -14684,25 +14683,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.47728884
   m_Center: {x: 0.0023401976, y: 0.5273349, z: -0.011928275}
---- !u!114 &6846157364107758613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 983415649368778302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af9418c92d7b78f48a0c71632a4e76ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explodeVFX: {fileID: 9158336596493228499}
-  bombArmature: {fileID: 0}
-  explosionRadius: 2
-  explosionDamage: 10
-  damageableLayers:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!1 &1199541231484575109
 GameObject:
   m_ObjectHideFlags: 0
