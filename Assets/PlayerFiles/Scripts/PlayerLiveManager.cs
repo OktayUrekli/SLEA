@@ -2,7 +2,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public interface IDamageable
 {
     void TakeDamage(float damage);
@@ -83,6 +82,14 @@ public class PlayerLiveManager : MonoBehaviour, IDamageable
         gameObject.GetComponent<PlayerMovementManager>().enabled = false;
         gameObject.GetComponent<PlayerCombatManager>().enabled = false;
         gameObject.GetComponent<PlayerLiveManager>().enabled = false;
+
+
+        Invoke("LevelDefeat", 1f);
+    }
+
+    void LevelDefeat()
+    {
+        FindAnyObjectByType<InGameCanvasController>().LevelDefeat();
     }
 
     void LiveStatus()

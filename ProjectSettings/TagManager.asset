@@ -8,6 +8,8 @@ TagManager:
   - Arrow
   - Enemy
   - Heal
+  - Stage
+  - Spike
   layers:
   - Default
   - TransparentFX
