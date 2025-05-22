@@ -82,4 +82,14 @@ public class InLevelStageStatusMech : MonoBehaviour
 
         FindAnyObjectByType<InGameCanvasController>().SaveCollectedSECount(); // bölüm baþarýlý bitince toplanan se ler kaydediliyor
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Transform bornPoint = stages[currentStage].transform.GetChild(0).transform;
+            collision.gameObject.transform.position = new Vector3(bornPoint.position.x, bornPoint.position.y+2, bornPoint.position.z);
+        }
+    }
+
 }
