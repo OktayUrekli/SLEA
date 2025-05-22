@@ -35,6 +35,20 @@ public class InGameCanvasController : MonoBehaviour
         collectedSECountText.text= collectedSECount.ToString();
     }
 
+    public void SaveCollectedSECount()
+    {
+        if (PlayerPrefs.HasKey("SECount"))
+        {
+            int se_count = PlayerPrefs.GetInt("SECount");
+            se_count += collectedSECount;
+            PlayerPrefs.SetInt("SECount", se_count);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("SECount", collectedSECount);
+        }
+    }
+
     public void LevelSuccessful()
     {
         levelSuccessPanel.SetActive(true);

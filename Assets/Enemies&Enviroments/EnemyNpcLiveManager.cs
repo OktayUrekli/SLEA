@@ -66,6 +66,7 @@ public class EnemyNpcLiveManager : MonoBehaviour,IDamageable
 
     void EnemyNPCDead()
     {
+        GetComponent<Collider>().enabled = true;
         if (npcAnimator!=null)
         {
             npcAnimator.SetTrigger("Dead");
