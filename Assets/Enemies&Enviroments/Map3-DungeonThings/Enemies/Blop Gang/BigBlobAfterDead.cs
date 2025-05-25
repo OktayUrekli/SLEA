@@ -5,7 +5,7 @@ public class BigBlobAfterDead : MonoBehaviour
     [Header("Other Blobs Creating")]
     [SerializeField] GameObject midBlob;
     [SerializeField] Transform[] createBlobPos;
-    [SerializeField] Transform midBlobParentTransform;
+    [SerializeField] Transform midBlobParentTransform; // buraya npc nin bulunduu stage konulur
 
     public void CreateMidBlob()
     {

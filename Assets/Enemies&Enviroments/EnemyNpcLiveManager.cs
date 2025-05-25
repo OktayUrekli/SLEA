@@ -19,7 +19,7 @@ public class EnemyNpcLiveManager : MonoBehaviour,IDamageable
     [SerializeField] float maxLive;
     [SerializeField] Image currentLiveImg;
     [SerializeField] GameObject floatingText;
-    float currentLive;
+    public float currentLive;
 
 
 
@@ -78,7 +78,7 @@ public class EnemyNpcLiveManager : MonoBehaviour,IDamageable
         Destroy(gameObject, 1f);
     }
 
-    void EnemyLiveStatus() // npc nin kalan canýný ui da günceller
+    public void EnemyLiveStatus() // npc nin kalan canýný ui da günceller
     {
         currentLiveImg.fillAmount = currentLive / maxLive;
     }

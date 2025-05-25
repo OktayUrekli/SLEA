@@ -108,6 +108,8 @@ public class GiantSkeletonBossController : MonoBehaviour,INPCController
                 else // player sadece görüþ alaný içindeyse
                 {
                     Debug.Log("görüþ alanýna girildi");
+                    closeAttackFinished = true;
+                    rangedAttackFinished = true;
                     if (closeAttackFinished && rangedAttackFinished && canAttack)
                     {
                         ApproachThePlayer(target.transform);
