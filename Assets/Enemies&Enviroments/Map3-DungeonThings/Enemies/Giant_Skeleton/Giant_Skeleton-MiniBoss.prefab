@@ -1249,6 +1249,7 @@ MonoBehaviour:
   maxLive: 450
   currentLiveImg: {fileID: 9104899809904879147}
   floatingText: {fileID: 4547475983935278989, guid: 5ac135ead8144aa42ae2c64d66b4a301, type: 3}
+  currentLive: 0
 --- !u!114 &4629355886675896757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2974,10 +2975,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6309268764509685474}
     m_Modifications:
-    - target: {fileID: 179413265128228122, guid: db79b0c9dedb09d4d85fb48f081a680a, type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 1423361898179675320, guid: db79b0c9dedb09d4d85fb48f081a680a, type: 3}
       propertyPath: m_Name
       value: SpinAttackVFX
