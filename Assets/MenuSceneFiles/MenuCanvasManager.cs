@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MenuCanvasManager : MonoBehaviour
@@ -97,6 +98,10 @@ public class MenuCanvasManager : MonoBehaviour
         Application.Quit();
     }
 
-
+    public void ClearAllSavesButton()
+    {
+        PlayerPrefs.DeleteAll();
+        SceneManager.LoadScene(0);
+    }
 
 }

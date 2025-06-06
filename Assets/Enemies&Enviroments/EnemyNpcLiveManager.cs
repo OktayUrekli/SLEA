@@ -71,7 +71,7 @@ public class EnemyNpcLiveManager : MonoBehaviour,IDamageable
         {
             npcAnimator.SetTrigger("Dead");
         }
-
+        GetComponent<Collider>().enabled = false;
         PlayVFX(npcDeadVFX);
         EnemyLiveStatus();
         gameObject.GetComponent<INPCController>().OnDeath(); // npc ölünce mekaniðini konrol eden script devredýþý býrakýlýyor

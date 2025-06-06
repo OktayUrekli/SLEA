@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,15 +11,14 @@ public class InLevelStageStatusMech : MonoBehaviour
 
     public int[] enemyCountsAtStages;
 
-    // Start is called before the first frame update
     void Start()
     {       
         enemyCountsAtStages = new int[stages.Length];
         NpcCountAtStages();
         StartCoroutine(ControleNpcCountAtLastStage());
+        Debug.Log(PlayerPrefs.GetInt("lastOpenLevelIndex") + "en son açýk olan level");
     }
 
-    // Update is called once per frame
     void Update()
     {      
         ControlEnemyStateAtStages();
@@ -76,7 +74,7 @@ public class InLevelStageStatusMech : MonoBehaviour
         int lastOpenLevelIndex = PlayerPrefs.GetInt("lastOpenLevelIndex"); // sonraki lecelin kilidi açýlýyor
         if (currentLevelIndex==lastOpenLevelIndex && currentLevelIndex<10) // þimdilik 10 level var dahasý açýlamaz 
         {
-            lastOpenLevelIndex++;
+            lastOpenLevelIndex+=1;
             PlayerPrefs.SetInt("lastOpenLevelIndex",lastOpenLevelIndex);
         }
 
@@ -87,7 +85,7 @@ public class InLevelStageStatusMech : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Transform bornPoint = stages[currentStage].transform.GetChild(0).transform;
+            Transform bornPoint = stages[currentStage].transform.GetChild(0).transform; // reborn point 0. indexte bulunmalýdýr
             collision.gameObject.transform.position = new Vector3(bornPoint.position.x, bornPoint.position.y+2, bornPoint.position.z);
         }
     }

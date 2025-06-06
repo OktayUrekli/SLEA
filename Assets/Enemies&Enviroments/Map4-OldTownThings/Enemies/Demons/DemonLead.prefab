@@ -1758,7 +1758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef9e7dfcb90bfce45b7e54f97d2355c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRangeRadius: 15
+  viewRangeRadius: 10
   attackRangeRadius: 2
 --- !u!114 &4886401035977481784
 MonoBehaviour:

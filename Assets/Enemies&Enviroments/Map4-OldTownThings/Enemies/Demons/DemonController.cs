@@ -8,8 +8,6 @@ public class DemonController : MonoBehaviour, INPCController
     Animator npcAnimator;
     NavMeshAgent npcNavAgent;
 
-
-
     [Header("View Range Variables")]
     [SerializeField] float turnSpeed = 125; // npc nin playe a doðru dönüþ hýzý
     [SerializeField] float viewRangeRadius = 10; // görüþ alaný yarýçapý

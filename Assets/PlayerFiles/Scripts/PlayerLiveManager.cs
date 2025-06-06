@@ -6,6 +6,7 @@ public interface IDamageable
 {
     void TakeDamage(float damage);
 }
+
 public class PlayerLiveManager : MonoBehaviour, IDamageable
 {
     Animator playerAnimator;
@@ -28,14 +29,12 @@ public class PlayerLiveManager : MonoBehaviour, IDamageable
         playerAnimator = GetComponent<Animator>();
         isDead = false;
     }
-
     void Start()
     {
         remaingLiveText.text = maxLive.ToString();
         currentLive = maxLive;
         remaingLiveImg.fillAmount = currentLive/maxLive;
     }
-
  
     public void TakeDamage(float damage)
     {
@@ -55,7 +54,7 @@ public class PlayerLiveManager : MonoBehaviour, IDamageable
             takeDamageBloodVfx.Play();
         }
 
-    }
+    }  
 
     public void TakeHeal(int heal)
     {
@@ -79,11 +78,13 @@ public class PlayerLiveManager : MonoBehaviour, IDamageable
         LiveStatus();
         playerAnimator.SetTrigger("Died");
         deathVfx.Play();
+        
         gameObject.GetComponent<PlayerMovementManager>().enabled = false;
         gameObject.GetComponent<PlayerCombatManager>().enabled = false;
         gameObject.GetComponent<PlayerLiveManager>().enabled = false;
-
-
+        
+        GetComponent<PlayerCollisionDetectManager>().enabled = false;
+        //GetComponent<Collider>().enabled = false;
         Invoke("LevelDefeat", 1f);
     }
 

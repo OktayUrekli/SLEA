@@ -41,16 +41,17 @@ public class LevelManager : MonoBehaviour
         if (PlayerPrefs.HasKey("lastOpenLevelIndex"))
         {
             lastOpenLevelIndex = PlayerPrefs.GetInt("lastOpenLevelIndex");
-            for (int i = 0; i <= lastOpenLevelIndex; i++)
+            for (int i = 0; i < lastOpenLevelIndex; i++)
             {
                 levelButtons[i].interactable = true;
             }
+            
         }
         else
         {
-            PlayerPrefs.SetInt("lastOpenLevelIndex", 0);
+            PlayerPrefs.SetInt("lastOpenLevelIndex", 1); // sadece ilk level açık oluyor başlangıçta
             lastOpenLevelIndex = PlayerPrefs.GetInt("lastOpenLevelIndex");
-            levelButtons[lastOpenLevelIndex].interactable = true;
+            levelButtons[lastOpenLevelIndex-1].interactable = true; // ilk level butonu açılıyor
         }
     }
 

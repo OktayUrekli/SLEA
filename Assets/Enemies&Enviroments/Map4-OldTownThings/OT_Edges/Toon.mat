@@ -25,7 +25,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _SHADING_STYLE_HAIR_AND_METAL
+  - _SHADING_STYLE_SKIN_AND_TEXTILES
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -64,17 +64,17 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AdditionalLightCutoffPoint: 0.837
+    - _AdditionalLightCutoffPoint: 1
     - _ExtraBandThickness: 0.1
     - _PaintbrushStrokesAngle: 360
     - _PaintbrushStrokesSize: 10
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _SHADING_STYLE: 1
-    - _ShadowsFloor: 0.401
+    - _SHADING_STYLE: 0
+    - _ShadowsFloor: 0.5
     - _Smoothness: 0.808
     - _SpecularNoiseSize: 0.1
-    - _StrongRimStrength: 0.282
+    - _StrongRimStrength: 0
     - _ToonCutoffPoint: 0.01
     - _UseEmission: 0
     m_Colors:
@@ -82,4 +82,3 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
-  m_AllowLocking: 1

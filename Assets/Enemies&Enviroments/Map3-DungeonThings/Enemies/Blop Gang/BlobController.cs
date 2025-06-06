@@ -172,6 +172,5 @@ public class BlobController : MonoBehaviour,INPCController
             gameObject.GetComponent<BigBlobAfterDead>().CreateMidBlob();
         }
         GetComponent<BlobController>().enabled = false;
-
     }
 }

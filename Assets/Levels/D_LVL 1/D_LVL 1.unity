@@ -17565,6 +17565,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 777506174095217192, guid: b1ff1ebfef2011e4e9b6e9e55b0a9b2f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 986c96f32d13da84a8afd832c5293c78, type: 2}
     - target: {fileID: 2625767226366624952, guid: b1ff1ebfef2011e4e9b6e9e55b0a9b2f, type: 3}
       propertyPath: m_Name
       value: SkyDome

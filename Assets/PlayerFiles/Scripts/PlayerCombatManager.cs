@@ -77,13 +77,13 @@ public class PlayerCombatManager : MonoBehaviour
         // mouse konumunu karakterin pozisyonundan çıkararak yönü bul  
         lookingDirectionWMouse = new Vector3(mousePosToWievPos.x - playerPosToWievPos.x, 0, mousePosToWievPos.y - playerPosToWievPos.y);
     }
-    private void LookToMouseDirection()
+    private void LookToMouseDirection() // mouse a basılı olduğu sürece ana karakteri o yöne döndürür
     {
         Quaternion targetRotation = Quaternion.LookRotation(lookingDirectionWMouse);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-    }
+    } 
 
-    void DrawBow(InputAction.CallbackContext context)
+    void DrawBow(InputAction.CallbackContext context) // yay çekme animasyonunu tetikler
     {
         if (canAttackWithBow)
         {
@@ -95,7 +95,7 @@ public class PlayerCombatManager : MonoBehaviour
         }
     }
 
-    void BowShoot(InputAction.CallbackContext context)
+    void BowShoot(InputAction.CallbackContext context) // yay bırakma animasyonunu tetikler
     {
         if (canAttackWithBow) // eğer yay kullanılamaz durumda mouse sağ tuşa basıldıysa çalışmaz
         {
@@ -124,12 +124,12 @@ public class PlayerCombatManager : MonoBehaviour
         Invoke("BowAttackCooldownFinis",bowShootCooldown - bowShootTime);
     }
 
-    void BowAttackCooldownFinis()
+    void BowAttackCooldownFinis() // yay ile saldırı yapma durumu aktif
     {
-        canAttackWithBow = true; // yay ile saldırı yapma durumu aktif
+        canAttackWithBow = true; 
     }
 
-    void UseSword()
+    void UseSword() // kılıç kullanımını tetikler
     {
         StatusOfAttacks(false, false); // ardarda saldırı tuşuna basılınca animasyon başa sarmasın diye yeni saldırı engelleniyor 
         ActivnesOfWepons(true, false); // kılıç ile saldırı olacağı için kılıcı görünür yayı görünmez kılıyor
@@ -138,7 +138,7 @@ public class PlayerCombatManager : MonoBehaviour
         StartCoroutine(PerformSwordAttack());
     }
 
-    IEnumerator PerformSwordAttack()
+    IEnumerator PerformSwordAttack() // kılıç ile saldırı sırasında gerçekleşen fonksiyon
     {
         swordCollider.enabled = true; // düşmana hasar verebilmesi için collider aktif edildi
         playerAnimator.SetTrigger("SwordAttack");
@@ -147,16 +147,14 @@ public class PlayerCombatManager : MonoBehaviour
         swordCollider.enabled = false; // saldırı olmadığı esnada kılıç düşmana değerse hasar vermesin diye collider devre dışı bırakıldı
         StatusOfAttacks(true, true); // kılıç ile saldırı animasyonu bittikten sonra yeni saldırılar gerçekleştirilebilir
     }
-
-    // kılıç ve yay kullanımına göre silahların görünürlüğünü ayarlar
-    void ActivnesOfWepons(bool sword_statu,bool bow_statu) 
+  
+    void ActivnesOfWepons(bool sword_statu,bool bow_statu) // kılıç ve yay kullanımına göre silahların görünürlüğünü ayarlar
     {
         sword.SetActive(sword_statu);
         bow.SetActive(bow_statu);
     }
 
-    // girdilere göre hangi saldırının gerçekleştirilebileceğini belirler
-    void StatusOfAttacks(bool sword_statu, bool bow_statu)
+    void StatusOfAttacks(bool sword_statu, bool bow_statu) // girdilere göre hangi saldırının gerçekleştirilebileceğini belirler
     {
         canAttackWithSword=sword_statu;
         canAttackWithBow = bow_statu;
@@ -171,4 +169,5 @@ public class PlayerCombatManager : MonoBehaviour
     {
         playerInputs.Combat.Disable();
     }
+
 }

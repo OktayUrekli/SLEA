@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class PlayerCollisionDetectManager : MonoBehaviour
 {
-    
-
     private void OnTriggerEnter(Collider other)
     {
         

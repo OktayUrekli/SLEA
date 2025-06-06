@@ -1938,6 +1938,7 @@ MonoBehaviour:
   maxLive: 125
   currentLiveImg: {fileID: 176770681280327021}
   floatingText: {fileID: 4547475983935278989, guid: 5ac135ead8144aa42ae2c64d66b4a301, type: 3}
+  currentLive: 0
 --- !u!114 &6790492934727492081
 MonoBehaviour:
   m_ObjectHideFlags: 0
