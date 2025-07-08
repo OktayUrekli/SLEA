@@ -8,7 +8,8 @@ public class MenuMusicsManager : MonoBehaviour
 
     private void Awake()
     {
-        if (FindAnyObjectByType<InGameMusicsManager>() != null) // levelden menuye dönünce game music manager yok edilmeli
+        // levelden menuye dönünce game music manager yok edilmeli
+        if (FindAnyObjectByType<InGameMusicsManager>() != null) 
         {
             Destroy(FindAnyObjectByType<InGameMusicsManager>().gameObject);
         }

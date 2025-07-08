@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: d2b12117d4403e44796fa9f2192ae4d8
+guid: 625dcb4be30409540a32dc6453aacdee
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Warrior_Sword
-    second: {fileID: 2100000, guid: b06124bd25dd5864d80d89635d272b22, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -21,6 +16,8 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
